@@ -1,0 +1,33 @@
+.to-top{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+    display: flex;
+    width: 3vw;
+    height: 3vw;
+    background-color: $primary-color;
+
+    text-decoration: none;
+    color: $white-color;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: all linear 0.3s;
+    &--active{
+        opacity: 1;
+        pointer-events: all;
+    }
+    @include tablet-mobile{
+        width: 8vw;
+        height: 8vw;
+        right: 4vw;
+    }
+    i{
+        margin: auto;
+        font-size: 1.5vw;
+        @include tablet-mobile{
+            font-size: 4vw;
+        }
+    }
+}

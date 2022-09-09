@@ -1,0 +1,147 @@
+
+{include file='header.tpl.html' title='site-header'}
+{if $dataObject}
+    <div class="category__top container">
+        <div class="category__anchor">
+            {if $linkNav}
+            <ul>
+                {foreach from=$linkNav item=navItm key=kNav}
+                <li><a href="{$navItm['link']}">{$navItm['name']}</a></li>
+                {/foreach}
+            </ul>
+            {/if}
+        </div>
+    </div>
+
+    <div class="details__container container">
+        <div class="details__images">
+          <div class="details__images__nav">
+            <img class="details__images__nav__item" src="{$dataObject['avatar']}" alt="thumbnail">
+            {if $listImg}
+                {foreach from=$listImg item=itemimg}
+                    <img class="details__images__nav__item" src="{$itemimg->getName()}" alt="thumbnail">
+                {/foreach}
+            {/if}
+          </div>
+          
+          <div class="details__images__slider__container">
+            <i class="fas fa-expand-alt details__images__slider__expand"></i>
+            <div class="details__images__popup">
+              <i class="fas fa-times details__images__popup__close"></i>
+              <div class="details__images__popup__slider">
+                <img class="details__images__popup__item" src="{$dataObject['avatar']}" alt="thumbnail">
+                {if $listImg}
+                    {foreach from=$listImg item=itemimg}
+                        <img class="details__images__popup__item" src="{$itemimg->getName()}" alt="thumbnail">
+                    {/foreach}
+                {/if}
+              </div>
+            </div>
+            <div class="details__images__slider">
+              <img class="details__images__slider__item" src="{$dataObject['avatar']}" alt="thumbnail">
+              {if $listImg}
+                    {foreach from=$listImg item=itemimg}
+                        <img class="details__images__slider__item" src="{$itemimg->getName()}" alt="thumbnail">
+                    {/foreach}
+                {/if}
+            </div>
+          </div>
+        </div>
+        <div class="details__body">
+          <div class="details__name">{$dataObject['name']}</div>
+          <div class="details__price">{$dataObject['price']}</div>
+          <a href="{$estore->getProperty('custom_messenger')}" class="details__contact" target="_blank">Tư vấn & mua hàng</a>
+          <div class="details__des">
+            {$dataObject['details']}
+          </div>
+          <table class="more_info">
+            <tbody>
+              {if $dataObject['science_name']}
+              <tr>
+              <td class="bold">Tên khoa học</td>
+              <td >{$dataObject['science_name']}</td>
+              </tr>
+              {/if}
+              {if $dataObject['other_name']}
+              <tr >
+              <td class="bold">Tên gọi khác</td>
+              <td >{$dataObject['other_name']}</td>
+              </tr>
+              {/if}
+              {if $dataObject['size']}
+              <tr >
+              <td class="bold">Kích thước cây</td>
+              <td >{$dataObject['size']}</td>
+              </tr>
+              {/if}
+              {if $dataObject['hard_code']}
+              <tr >
+              <td class="bold">Độ khó</td>
+              <td >{$dataObject['hard_code']}</td>
+              </tr>
+              {/if}
+              {if $dataObject['light']}
+              <tr >
+              <td class="bold">Yêu cầu ánh sáng</td>
+              <td >{$dataObject['light']}</td>
+              </tr>
+              {/if}
+              {if $dataObject['water']}
+              <tr >
+              <td class="bold">Nhu cầu nước</td>
+              <td>{$dataObject['water']}</td>
+              </tr>
+              {/if}
+              </tbody>
+            </table>
+          {if $dataObject['array_keyword']}
+          <div class="details__tag">
+                <span>Tags: </span>
+                <ul>
+                    {foreach from=$dataObject['array_keyword'] item=keyW}
+                        <li><a href="/search={$keyW}.html">#{$keyW}</a></li>
+                    {/foreach}
+                </ul>
+          </div>
+          {/if}
+          <ul class="details__socials">
+            {if $estore->getProperty('custom_facebook')}<li><a href="{$estore->getProperty('custom_facebook')}"><i class="fab fa-facebook-f"></i></a></li>{/if}
+            {if $estore->getProperty('custom_instagram')}<li><a href="{$estore->getProperty('custom_instagram')}"><i class="fab fa-instagram"></i></a></li>{/if}
+            {if $estore->getProperty('custom_tiktok')}<li><a href="{$estore->getProperty('custom_tiktok')}"><i class="fab fa-shopify"></i></a></li>{/if}
+          </ul>
+        </div>
+        {if $estore->getProperty('custom_product_detail_order_info')}
+        <div class="details__left">
+          {$estore->getProperty('custom_product_detail_order_info')}
+        </div>
+        {/if}
+      </div>
+      {if $arrayProSameCat}
+      <section class="list-pro container detail-slides">
+        <h2 class="list-pro__heading">Sản phẩm bán chạy</h2>
+        <div class="list-pro__container list-pro__slider">
+            {foreach from=$arrayProSameCat item=proSame}
+            <a href="/{$proSame['slug']}.html" class="list-pro__block">
+                <div class="list-pro__image" style="background-image: url({$proSame['avatar']});"></div>
+                <div class="list-pro__bot">
+                <div class="list-pro__name">{$proSame['name']}</div>
+                <div class="list-pro__price">{$proSame['price']}</div>
+                </div>
+            </a>
+          {/foreach}
+          {if $loadDup && $loadDup == '1'}
+          {foreach from=$arrayProSameCat item=proSame}
+            <a href="/{$proSame['slug']}.html" class="list-pro__block">
+                <div class="list-pro__image" style="background-image: url({$proSame['avatar']});"></div>
+                <div class="list-pro__bot">
+                <div class="list-pro__name">{$proSame['name']}</div>
+                <div class="list-pro__price">{$proSame['price']}</div>
+                </div>
+            </a>
+          {/foreach}
+          {/if}
+        </div>
+      </section>
+      {/if}
+{/if}
+{include file='footer.tpl.html' title='site-footer'}

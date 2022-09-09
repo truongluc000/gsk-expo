@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex" />
+
+    <meta name="description" content="{if $pageDescription}{$pageDescription|strip_tags}{else}{$estore->getDescription()}{/if}">
+    <meta name="keywords" content="{if $pageKeywords}{$pageKeywords|strip_tags}{else}{$estore->getKeywords()}{/if}">
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{if $pageTitle}{$pageTitle|strip_tags}{else}{$estore->getName()}{/if}" />
+    <meta property="og:description" content="{if $pageDescription}{$pageDescription|strip_tags}{else}{$estore->getDescription()}{/if}" />
+    <meta property="og:image" content="{$logoimg}" />
+    <meta property="og:image:width" content="384" />
+    <meta property="og:image:alt" content="image-share" />
+    <meta property="og:image:height" content="384" />
+    <meta property="og:site_name" content="{$estore->getProperty('custom_en_name')}" />
+    <title>{if $pageTitle}{$pageTitle|strip_tags}{else}{$estore->getName()}{/if}</title>
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/all.css{$estore->getProperty('custom_version')}" />
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/lity.min.css" />
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/slick.css" />
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/main.css{$estore->getProperty('custom_version')}" />
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/new.css{$estore->getProperty('custom_version')}" />
+    {if $currentOff && $currentOff == '1'}{else}{/if}
+    {$estore->getProperty('headerhtml')}
+    <link rel="shortcut icon" href="{if $estore->getProperty('favicon')}{$estore->getProperty('favicon')}{else}/logobentrai.png{/if}">
+    {literal}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JKRBFKQE5X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JKRBFKQE5X');
+    </script>
+    {/literal}
+  </head>
+  <body>
+    <div class="loading">
+      {if $estore->getProperty('store_logo')}<img src="{$estore->getProperty('store_logo')}" alt="logo">{else}<img src="/{$templatePath}/{$userTemplate}/img/logo-new.png" alt="logo">{/if}
+    </div>
+    <div class="smooth">
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__head hide-on-mobile-tablet">
+          <div class="header__head__contact">
+            <span>
+              <i class="far fa-clock"></i>
+              <p>{$estore->getProperty('custom_work_time')}</p>
+            </span>
+            <span>
+              <i class="fas fa-phone"></i>
+              <p>{if $tel}{$telN}{/if}</p>
+            </span>
+          </div>
+          <div class="header__head__search">
+            <i class="fas fa-search"></i>
+            <div class="header__search__modal">
+              <i class="fas fa-times"></i>
+            </div>
+            <form class="header__search__input">
+              <div class="header__search__group">
+                <input placeholder="Tìm kiếm sản phẩm" type="text" name="value__search" id="inputsearch1" onkeyup="searchProductIndex()">
+                <button id="subsearch1"><i class="fas fa-search"></i></button>
+              </div>
+              <div class="header__search__suggest">
+                <ul class="header__search__list search-ajax">
+
+                  <!-- <li class="header__search__item">
+                    <a href="#" class="header__search__item__link">
+                      <div class="header__search__item__image" style="background-image: url(/{$templatePath}/{$userTemplate}/img/anthurium_warocqueanum_dark_form_queen.jpg);"></div>
+                      <div class="header__search__item__name">
+                        Cây Ráy Đột Biến Alocasia Macrorrhiza Variegata
+                      </div>
+                      <div class="header__search__item__price">
+                        <div class="header__search__item__price__new">
+                          5.000.000 <span>đ</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li> -->
+
+                </ul>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        <div class="header__body hide-on-mobile-tablet">
+          {if $estore->getProperty('store_logo')}
+          <a href="/" class="header__logo">
+            <img src="{$estore->getProperty('store_logo')}" alt="logo" />
+          </a>
+          {/if}
+          {if $arrayProCate}
+          <ul class="header__menu">
+            {foreach from=$arrayProCate item=proCateItm}
+            <li class="header__item">
+              <a href="/{$proCateItm['slug']}.html" class="header__item__link">
+                <span>{$proCateItm['name']}</span>
+                {if $proCateItm['list_sub']}<i class="fas fa-angle-down"></i>{/if}
+              </a>
+                {if $proCateItm['list_sub']}
+                <div class="header__dropdown">
+                  <ul>
+                    {foreach from=$proCateItm['list_sub'] item=subProCate}
+                    <li><a href="/{$subProCate['slug']}.html">{$subProCate['name']}</a></li>
+                    {/foreach}
+                  </ul>
+                </div>
+                {/if}
+            </li>
+            {/foreach} 
+              {if $listTutorial}
+              <li class="header__item">
+                <a href="/huong-dan.html" class="header__item__link">
+                  <span>Hướng dẫn</span>
+                  <i class="fas fa-angle-down"></i>
+                </a>
+                
+                <div class="header__dropdown">
+                  <ul>
+                    {foreach from=$listTutorial item=tutorialItm}
+                    <li><a href="/{$tutorialItm->getSlug()}.html">{$tutorialItm->getName()}</a></li>
+                    {/foreach}
+                  </ul>
+                </div>
+              </li>
+              {/if}
+          </ul>
+          {/if}
+        </div>
+
+        <!-- header mobile ---start -->
+        <div class="header-mb__head">
+          {if $tel}<i class="fas fa-phone"></i> {$telN}{/if} <i class="far fa-clock" style="margin-left: 3vw;"></i> {$estore->getProperty('custom_work_time')}
+        </div>
+        <div class="header-mb__body">
+          <div class="header-mb__bars">
+            <i class="fas fa-bars"></i>
+            <ul class="header-mb__list">
+              <i class="fas fa-times header-mb__list__close"></i>
+              {if $arrayProCate}
+              {foreach from=$arrayProCate item=proCateItm}
+              <li class="header-mb__item">
+                <a class="header-mb__link {if $proCateItm['list_sub']}header-mb__icon-drop{/if}" {if $proCateItm['list_sub']}{else}href="/{$proCateItm['slug']}.html"{/if}>
+                  {$proCateItm['name']}
+                </a>
+                {if $proCateItm['list_sub']}
+                <div class="header-mb__dropdown">
+                  <ul class="header-mb__dropdown__list">
+                    {foreach from=$proCateItm['list_sub'] item=subProCate}
+                    <li class="header-mb__dropdown__item"><a href="/{$subProCate['slug']}.html" class="header-mb__dropdown__link">{$subProCate['name']}</a></li>
+                    {/foreach} 
+                  </ul>
+                </div>
+                {/if}
+              </li>
+              {/foreach}
+              {if $listTutorial}
+                <li class="header-mb__item">
+                  <a class="header-mb__link header-mb__icon-drop">Hướng dẫn</a>
+                  <div class="header-mb__dropdown">
+                    <ul class="header-mb__dropdown__list">
+                      {foreach from=$listTutorial item=tutorialItm}
+                      <li class="header-mb__dropdown__item"><a href="/{$tutorialItm->getSlug()}.html" class="header-mb__dropdown__link">{$tutorialItm->getName()}</a></li>
+                      {/foreach} 
+                    </ul>
+                  </div>
+                </li>
+                {/if}
+              {/if}
+            </ul>
+          </div>
+          {if $estore->getProperty('store_logo')}
+          <a href="/" class="header-mb__logo">
+            <img src="{$estore->getProperty('store_logo')}" alt="logo">
+          </a>
+          {/if}
+          <div class="header-mb__search">
+          </div>
+        </div>
+      </header>
+      <main class="main">

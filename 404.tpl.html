@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta name="robots" content="index, follow" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/upload/files/resources/favicon-1.png" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <title>Lỗi 404 | mungarden.vn</title>
+
+    <meta name="description" content="{$description}" />
+    <meta name="keywords" content="{$keywords}" />
+    <meta property="og:title" content="{$pageTitle}" />
+    <meta property="og:description" content="{$description}" />
+    {if $currentUrlx1}
+    {if $act != 'index'}
+    <link rel="canonical" href="{$currentUrlx1}"/>
+    {/if}
+    <meta property="og:url" content="{$currentUrlx1}" />
+    {/if}
+    <meta property="og:image" content="{$shareFBImg}" />
+    <meta property="og:image:alt" content="{$pageTitle}" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="copyright" content="{$estore->getCompany()}" />
+    <meta name="author" content="{$estore->getCompany()}" />
+    <meta property="og:site_name" content="{$estore->getDomain()}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+        <style>
+          body{
+            height: 100vh;
+          }
+          h1{
+            font-family: Roboto,sans-serif;
+          }
+          .bg-404{
+            background: url(/{$templatePath}/{$userTemplate}/images/404.png) center center no-repeat;
+            background-size: contain;
+            min-height: 300px;
+            position: relative;
+          }
+          .container{
+            padding: 20px 0px 0px 20px;
+          }
+          .search-advance{
+            display: inline-block;
+            background-color: #008037;
+            vertical-align: top;
+            font-size: 14px;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 8px 15px;
+            transition: all .5s;
+            transform: translateY(-5px);
+          }
+          .btn-large{
+            color:#008037;
+            font-weight: bold;
+          }
+          .back-home{
+            background: #fff;
+            border: 1px solid #008037;
+            color: #008037;
+          }
+        </style>
+  </head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="hero-unit center">
+        <p><a href="/" title="Mun Garden"><img alt="Mun Garden" src="/upload/files/ads/logo-new.png" width="175"></a></p>
+          <h1>Rất tiếc, Trang bạn tìm kiếm không tồn tại</h1>
+          <p>
+            <a class="search-advance" href="/kieng-la-binh-dan.html" title="Kiểng lá">Kiểng lá</a>
+            <a class="search-advance back-home" href="/" title="Trở về Trang chủ">Trở về Trang chủ</a>
+          </p>
+        </div>
+        <br/>
+    </div>
+  </div>
+  <div class="row bg-404">
+  </div>
+</div>
+</body>
+</html>

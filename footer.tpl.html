@@ -1,0 +1,76 @@
+</main>
+<footer class="footer container">
+    <div class="footer__body">
+      <div class="footer__block">
+        
+        <a href="/" class="footer__logo">
+          {if $estore->getProperty('store_logo_footer')}<img src="{$estore->getProperty('store_logo_footer')}" alt="logo">{else}<img src="/{$templatePath}/{$userTemplate}/img/logo-new.png" alt="logo">{/if}
+        </a>
+        <div class="footer__slogan">
+          {if $estore->getProperty('custom_sologan')}{$estore->getProperty('custom_sologan')}{/if}
+        </div>
+      </div>
+      {if $listSupport}
+      <div class="footer__block">
+        <div class="footer__heading">Hỗ trợ</div>
+        <ul class="footer__list">
+          {foreach from=$listSupport item=supportItm}
+          <li><a href="/{$supportItm->getSlug()}.html">{$supportItm->getTitle()}</a></li>
+          {/foreach}
+        </ul>
+      </div>
+      {/if}
+
+      <div class="footer__block">
+        <div class="footer__heading">Liên hệ</div>
+        <ul class="footer__list">
+          <li>
+            <a href="tel:{$tel}">Hotline: {$telN}</a>
+          </li>
+            {if $email}
+            <li><a href="mailto:{$email}">Email: {$email}</a></li>
+            {/if}
+            {if $estore->getProperty('custom_address')}
+          <li><a href="{$estore->getProperty('custom_map')}" target="_blank">Địa chỉ: {$estore->getProperty('custom_address')}</a></li>
+            {/if}          
+        </ul>
+        <ul class="footer__socials">
+          <li>
+            {if $estore->getProperty('custom_facebook')}<a href="{$estore->getProperty('custom_facebook')}" target="_blank"><i class="fab fa-facebook-f"></i></a>{/if}
+          </li>
+          <li>
+            {if $estore->getProperty('custom_instagram')}  
+            <a href="{$estore->getProperty('custom_instagram')}">
+              <i class="fab fa-instagram"></i>
+            </a>
+            {/if}
+          </li>
+          <li>
+            {if $estore->getProperty('custom_tiktok')}  
+            <a href="{$estore->getProperty('custom_tiktok')}" target="_blank">
+              <i class="fab fa-shopify"></i>
+            </a>
+            {/if}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <div class="footer__bot">
+    <p class="copy-right">Copyright © 2022. Powered by <a href="https://truongluc.com/" target="_blank" >TruongLuc.com</a></p>
+  </div>
+  <a href="#" class="to-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+</div>
+</div>
+<script src="/{$templatePath}/{$userTemplate}/js/jquery-3.6.0.js"></script>
+<script src="/{$templatePath}/{$userTemplate}/js/lity.min.js"></script>
+<script src="/{$templatePath}/{$userTemplate}/js/slick.js"></script>
+<script src="/{$templatePath}/{$userTemplate}/js/gsap.min.js"></script>
+<script src="/{$templatePath}/{$userTemplate}/js/ScrollTrigger.min.js"></script>
+<script src="/{$templatePath}/{$userTemplate}/js/main.js{$estore->getProperty('custom_version')}"></script>
+<script src="/{$templatePath}/{$userTemplate}/js/new.js{$estore->getProperty('custom_version')}"></script>
+
+</body>
+</html>

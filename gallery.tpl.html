@@ -1,0 +1,39 @@
+
+{include file='header.tpl.html' title='site-header'}
+{if $objectInfo}
+    {if $bannerCate}
+    <section class="banner" style="background-image: url({$bannerCate});" data-slideMB="{if $bannerMobileCate}{$bannerMobileCate}{/if}">
+    </section>
+    {/if}
+    <div class="category__top container">
+        <div class="category__anchor">
+        {if $linkNav}
+          <ul>
+            {foreach from=$linkNav item=navItm key=kNav}
+            <li><a href="{$navItm['link']}">{$navItm['name']}</a></li>
+            {/foreach}
+          </ul>
+        {/if}
+        </div>
+        <div class="category__fill">
+          <div class="category__fill__total">
+          </div>
+        </div>
+      </div>
+    <section class=" list-pro--category gallery-content container">
+      <div class="list-pro__container" id="load-gallery">
+        {if $arrayListBrand}
+        {foreach from=$arrayListBrand item=galleryItm}
+        <a href="/upload/files/gallery/{$galleryItm}" class="list-pro__block" data-lity><div class="list-pro__image" style="background-image: url(/upload/files/gallery/{$galleryItm});"></div></a>
+        {/foreach}
+        {/if}
+      </div>
+    </section>
+    {if $numLeft && $numLeft > 0}
+    <input type="hidden" id="current-num" value="8">
+    <div class="category__pagination" id="btn-load-gallery">
+      <div class="loadMore" id="load-more-div" onclick="LoadMoreGallery(this)">Xem tiếp  {if $numLeft}<span id="num-left">{$numLeft}</span> ảnh{/if}</div>    
+    </div>
+    {/if}
+{/if}
+{include file='footer.tpl.html' title='site-footer'}

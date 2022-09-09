@@ -1,0 +1,72 @@
+
+{include file='header.tpl.html' title='site-header'}
+{if $objectInfo}
+    <div class="category__top container">
+        <div class="category__anchor">
+        {if $linkNav}
+          <ul>
+            {foreach from=$linkNav item=navItm key=kNav}
+            <li><a href="{$navItm['link']}">{$navItm['name']}</a></li>
+            {/foreach}
+          </ul>
+        {/if}
+        </div>
+      </div>
+      <div class="details__container container article-content">
+        <div class="details_article_body">
+          <div class="details__name">{$objectInfo->getTitle()}</div>
+          <div class="details__des">{$objectInfo->getDetails()}</div>
+        </div>
+        {if $arrayHotPro}
+        <div class="details_article_sidebar">
+          <span class="widget-title ">Có thể bạn thích</span>
+          <div class="is-divider small"></div>
+          <div class="list_other_new">
+            {foreach from=$arrayHotPro item=hotItm}
+              <div class="item_new" onclick="window.location.href='/{$hotItm['slug']}.html'" style="cursor: pointer;">
+                <div class="image_new">
+                  <img src="{$hotItm['avatar']}">
+                </div>
+                <div class="new_info" >
+                  <p class="title">{$hotItm['name']}</p>
+                  <p class="price">{$hotItm['price']}<span>đ</span></p>
+                </div>
+              </div>
+            {/foreach}
+          </div>
+        </div>
+        {/if}
+      </div>
+    {if $listOtherArticle}
+    <section class="news container">
+        <h2 class="news__heading">Các bài viết liên quan</h2>
+        <div class="news__slider">
+        {foreach from=$listOtherArticle item=otherAr}
+          <a href="/{$otherAr->getSlug()}.html" class="news__slide" title="{$otherAr->getTitle()}">
+            <div class="news__image" style="background-image: url({$otherAr->getProperty('articleimg')});"></div>
+            <div class="news__body">
+              <div class="news__tag">Mun Garden 360°</div>
+              <div class="news__title">{$otherAr->getTitle()}</div>
+              <div class="news__line"></div>
+              <div class="news__des">{$otherAr->getSapo()}</div>
+            </div>
+          </a>
+          {/foreach}
+          {if $loadDup && $loadDup == '1'}
+          {foreach from=$listOtherArticle item=otherAr}
+          <a href="/{$otherAr->getSlug()}.html" class="news__slide" title="{$otherAr->getTitle()}">
+            <div class="news__image" style="background-image: url({$otherAr->getProperty('articleimg')});"></div>
+            <div class="news__body">
+              <div class="news__tag">Mun Garden 360°</div>
+              <div class="news__title">{$otherAr->getTitle()}</div>
+              <div class="news__line"></div>
+              <div class="news__des">{$otherAr->getSapo()}</div>
+            </div>
+          </a>
+          {/foreach}
+          {/if}
+        </div>
+      </section>
+    {/if}
+{/if}
+{include file='footer.tpl.html' title='site-footer'}

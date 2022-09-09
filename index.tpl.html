@@ -1,0 +1,83 @@
+  {include file='header.tpl.html' title='site-header'}
+        {if $listSlides}
+        <section class="slider">
+          {foreach from=$listSlides item=slideItm}
+          <div title="{$slideItm['content']}" class="slide" style="background-image: url({$slideItm['avatar']});" data-slideMB="{$slideItm['mobile_img']}">
+          </div>
+          {/foreach}
+            <!-- <div class="slide__block">
+              <div class="slide__sub">Chẳng cần ra khỏi nhà</div>
+              <div class="slide__title">Đặt hàng qua online dễ dàng & đơn giản</div>
+              <a href="#" class="slide__link">Mua ngay</a>
+            </div> -->
+        </section>
+        {/if}
+        {if $aboutMun}
+        <section class="about-us container">
+          {if $aboutMun->getProperty('articleimg')}<div class="about-us__image" style="background-image: url({$aboutMun->getProperty('articleimg')});"></div>{/if}
+          <div class="about-us__body">
+            <h2 class="about-us__heading">Về chúng tôi?</h2>
+            <div class="about-us__container">
+              {$aboutMun->getSapo()}
+              <br> <a id="more-about-us" href="/gioi-thieu.html" title="Xem thêm"> Xem thêm</a>
+            </div>
+          </div>
+        </section>
+        {/if}
+        {if $arrayHotPro}
+        <section class="list-pro container">
+          <h2 class="list-pro__heading">Sản phẩm bán chạy</h2>
+          <div class="list-pro__container">
+            {foreach from=$arrayHotPro item=hotItm}
+            <a href="/{$hotItm['slug']}.html" class="list-pro__block" title="{$hotItm['name']}">
+              <div class="list-pro__image" style="background-image: url({$hotItm['avatar']});"></div>
+              <div class="list-pro__bot">
+                <div class="list-pro__name">{$hotItm['name']}</div>
+                <div class="list-pro__price">{$hotItm['price']}</div>
+              </div>
+            </a>
+            {/foreach}
+          </div>
+        </section>
+        {/if}
+
+      {if $arrayCateAndPro}
+      {foreach from=$arrayCateAndPro item=catePro}
+      {if $catePro['list_pro']}
+        <section class="list-pro container">
+          <h2 class="list-pro__heading" ><a href="/{$catePro['slug']}.html">{$catePro['name']}</a></h2>
+          <div class="list-pro__container home-pro__slider">
+            {foreach from=$catePro['list_pro'] item=itemPro key=kpro}
+            <a href="/{$itemPro['slug']}.html" class="list-pro__block" title="{$itemPro['name']}">
+              <div class="list-pro__image" style="background-image: url({$itemPro['avatar']});"></div>
+              <div class="list-pro__bot">
+                <div class="list-pro__name">{$itemPro['name']}</div>
+                <div class="list-pro__price">{$itemPro['price']}</div>
+              </div>
+            </a>
+            {/foreach}
+          </div>
+        </section>
+      {/if}
+      {/foreach}
+      {/if}
+
+        {if $articleIndex}
+        <section class="news container">
+          <h2 class="news__heading">Kiến thức về cây</h2>
+          <div class="news__slider">
+            {foreach from=$articleIndex item=articleItm}
+            <a href="/{$articleItm['slug']}.html" class="news__slide" title="{$articleItm['title']}">
+              <div class="news__image" style="background-image: url({$articleItm['avatar']});"></div>
+              <div class="news__body">
+                <div class="news__tag">Mun Garden 360°</div>
+                <div class="news__title">{$articleItm['title']}</div>
+                <div class="news__line"></div>
+                <div class="news__des">{$articleItm['sapo']}</div>
+              </div>
+            </a>
+            {/foreach}
+          </div>
+        </section>
+        {/if}
+{include file='footer.tpl.html' title='site-footer'}

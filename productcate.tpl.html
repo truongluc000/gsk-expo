@@ -1,0 +1,58 @@
+
+{include file='header.tpl.html' title='site-header'}
+{if $objectInfo}
+    {if $bannerCate}
+    <section class="banner" style="background-image: url({$bannerCate});" data-slideMB="{if $bannerMobileCate}{$bannerMobileCate}{/if}">
+    </section>
+    {/if}
+    <div class="category__top container">
+        <div class="category__anchor">
+        {if $linkNav}
+          <ul>
+            {foreach from=$linkNav item=navItm key=kNav}
+            <li><a href="{$navItm['link']}">{$navItm['name']}</a></li>
+            {/foreach}
+          </ul>
+        {/if}
+        </div>
+        <div class="category__fill">
+          <div class="category__fill__total">
+            <!-- Hiển thị 1-48 của 218 kết quả -->
+          </div>
+          <!-- <select class="category__fill__select">
+            <option value="default" selected>Thứ tự mặc định</option>
+            <option value="popular">Thứ tự theo mức độ phổ biến</option>
+            <option value="review">Thứ tự theo điểm đánh giá</option>
+            <option value="price-up">Thứ tự theo giá: thấp đến cao</option>
+            <option value="price-down">Thứ tự theo giá: cao đến thấp</option>
+          </select> -->
+        </div>
+      </div>
+    <section class="list-pro list-pro--category container">
+        {if $listProCatex}
+        <div class="list-pro__container">
+            {foreach from=$listProCatex item=proSame}
+            <a href="/{$proSame['slug']}.html" class="list-pro__block">
+                <div class="list-pro__image" style="background-image: url({$proSame['avatar']});"></div>
+                <div class="list-pro__bot">
+                <div class="list-pro__name">{$proSame['name']}</div>
+                <div class="list-pro__price">{$proSame['price']}</div>
+                </div>
+            </a>
+            {/foreach}
+        </div>
+        {else}
+        <div class="category__anchor"><div class="list-pro__container"><p class="not-available">Không có sản phẩm phù hợp</p></div></div>
+        {/if}
+    </section>
+    {if isset($rowsPages.pages) && $rowsPages.pages > 1}
+    <div class="category__pagination">
+        <ul>
+            {foreach from=$pager item=pageItem1 key=p2}
+            <li><a href="{$pageItem1.url}" class="{if $pageItem1.current==1}active{/if}">{$pageItem1.name}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+    {/if}  
+{/if}
+{include file='footer.tpl.html' title='site-footer'}

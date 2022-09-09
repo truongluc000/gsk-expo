@@ -1,0 +1,49 @@
+
+{include file='header.tpl.html' title='site-header'}
+{if $objectInfo}
+    <div class="category__top container">
+        <div class="category__anchor">
+        {if $linkNav}
+          <ul>
+            {foreach from=$linkNav item=navItm key=kNav}
+            <li><a href="{$navItm['link']}">{$navItm['name']}</a></li>
+            {/foreach}
+          </ul>
+        {/if}
+        </div>
+        <div class="category__fill">
+          <div class="category__fill__total">
+          </div>
+        </div>
+      </div>
+    {if $listArtCatex}
+    <section class="news container">
+        <h2 class="news__heading">{$objectInfo->getName()}</h2>
+        <div class="news__list">
+          {foreach from=$listArtCatex item=articleItm}
+          <div class="item__new">
+          <a href="/{$articleItm['slug']}.html" class="news__slide" title="{$articleItm['title']}">
+            <div class="news__image" style="background-image: url({$articleItm['avatar']});"></div>
+            <div class="news__body">
+              <div class="news__tag">Mun Garden 360°</div>
+              <div class="news__title">{$articleItm['title']}</div>
+              <div class="news__line"></div>
+              <div class="news__des">{$articleItm['sapo']}</div>
+            </div>
+          </a>
+        </div>
+          {/foreach}
+        </div>
+      </section>
+    {/if}
+    {if isset($rowsPages.pages) && $rowsPages.pages > 1}
+    <div class="category__pagination">
+        <ul>
+            {foreach from=$pager item=pageItem1 key=p2}
+            <li><a href="{$pageItem1.url}" class="{if $pageItem1.current==1}active{/if}">{$pageItem1.name}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+    {/if}  
+{/if}
+{include file='footer.tpl.html' title='site-footer'}
