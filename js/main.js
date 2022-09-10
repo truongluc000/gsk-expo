@@ -190,12 +190,18 @@ $(document).ready(function () {
     }
     //   slider header
     if($(".slider").length){
-        const heightHeader = $(".header").height();
-        const heightSlider = ($(window).height() - heightHeader)/100*80;
+        let heightHeader = $(".header").height();
+        let heightSlider = ($(window).height() - heightHeader)/100*80;
+        if(window.innerWidth < 1024){
+            heightSlider = ($(window).height() - heightHeader)/100*50;
+        }
         $(".slide").height(heightSlider);
         $(window).resize(function () { 
-            const heightHeader = $(".header").height();
-            const heightSlider = ($(window).height() - heightHeader)/100*80;
+            let heightHeader = $(".header").height();
+            let heightSlider = ($(window).height() - heightHeader)/100*80;
+            if(window.innerWidth < 1024){
+                heightSlider = ($(window).height() - heightHeader)/100*50;
+            }
             $(".slide").height(heightSlider);
         });
         $(".slider").slick({
@@ -205,17 +211,17 @@ $(document).ready(function () {
         })
 
         if(window.innerWidth < 1024){
-            $(".slide").each(function(inx, cur){
-                const data = $(cur).attr("data-slideMB");
-                const styleSlide = $(cur).attr("style");
-                if(data){
-                    const start = styleSlide.indexOf("(\"") + 2
-                    const end = styleSlide.indexOf("\")")
-                    const fileImg = styleSlide.substring(start, end)
-                    const newFile = styleSlide.replace(fileImg, data)
-                    $(cur).attr("style", newFile)
-                }
-            })
+            // $(".slide").each(function(inx, cur){
+            //     const data = $(cur).attr("data-slideMB");
+            //     const styleSlide = $(cur).attr("style");
+            //     if(data){
+            //         const start = styleSlide.indexOf("(\"") + 2
+            //         const end = styleSlide.indexOf("\")")
+            //         const fileImg = styleSlide.substring(start, end)
+            //         const newFile = styleSlide.replace(fileImg, data)
+            //         $(cur).attr("style", newFile)
+            //     }
+            // })
         }
     }
     if(window.innerWidth < 1024){
