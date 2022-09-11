@@ -618,7 +618,8 @@ html {
   }
 }
 .main{
-padding: 0 7vw;
+  padding: 0 7vw;
+  position: relative;
 }
 .footer__body{
   padding: 2vw 7vw;
@@ -856,7 +857,7 @@ padding: 0 7vw;
 .header__body {
   padding: 0 7vw;
   display: flex;
-  height: 50px;
+  height: 80px;
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -881,12 +882,12 @@ padding: 0 7vw;
 }
 .header__logo {
   width: 5vw;
-  height: 50px;
+  height: 80px;
   display: block;
   transition: all ease 0.3s;
 }
 .header__logo img {
-  height: 50px;
+  height: 80px;
 }
 .header__menu {
   display: flex;
@@ -1859,6 +1860,7 @@ padding: 0 7vw;
 }
 h2.news__heading,h2.contact__heading{
   position: relative;
+  padding-top: 7vw;
 }
 h2.news__heading span,h2.contact__heading span{
   padding: 0 20px;
@@ -2675,12 +2677,29 @@ h2.contact__heading span{
     font-size: 4vw;
   }
 }
-
+.main .mark-footer{
+  position: absolute;
+  right: 0;
+  width: 70vw;
+  bottom: 20px;
+  z-index: -1;
+  opacity: 0.5;
+}
+.footer .mark-footer{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.5;
+}
 .footer {
+  position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 7vw;
   padding-bottom: 6vw;
   background-image: url('/upload/files/logo/footer-pc.jpg');
 }
@@ -2731,9 +2750,23 @@ width: 45vw;
   line-height: 1.7vw;
   color: #fff;
   border-radius: 15px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.contact-button:hover{
+  background: #ff4f0f;
 }
 .contact-link{
   font-style: italic;
+}
+.contact-link a{
+  color:#000;
+  text-decoration: none;
+  transition: all ease 0.3s;
+}
+.contact-link a:hover{
+  color:rgb(236, 125, 51);
+  text-decoration: underline;
 }
 .fa-play{
   color: #f26633;
