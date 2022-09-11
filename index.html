@@ -185,9 +185,46 @@
           </div>
         </div>
       </footer>
-      <!-- <div class="footer__bot">
-        Copyright 2022 © <strong>Mun Garden</strong>
-      </div> -->
+
+      <!-- {if $listPopUp}
+      {if $checkloadlazy && $checkloadlazy <= 2}
+      <div id="popup">
+          <h1>
+              {foreach from=$listPopUp item=popItem}
+              <a href="#" class="btnClose" id="btnClose" style="position: relative;">
+                  <button type="button" class="close closebutton" data-dismiss="modal" aria-label="Close" style="position: absolute;font-size: 45px;right: 2%;" onclick="endpopup()">
+                      <span aria-hidden="true">×</span>
+                  </button>
+                  <img src="{$popItem->getProperty('articleimg')}" alt="Logo" {if $popItem->getProperty('url') != ""}onclick="location.href='{$popItem->getProperty('url')}'"{else} onclick="endpopup()"{/if} />
+              </a>
+              {/foreach}
+          </h1>
+      </div>
+      <script type="text/javascript">
+          function endpopup(){
+              jQuery('#popup').css('display','none');
+          }
+      </script>
+      {/if}
+      {/if} -->
+      <div id="popup">
+          <h1>
+              
+              <a href="#" class="btnClose" id="btnClose" style="position: relative;">
+                  <button type="button" class="close closebutton" data-dismiss="modal" aria-label="Close" style="position: absolute;font-size: 45px;right: 2%; cursor: pointer;" onclick="endpopup()">
+                      <span aria-hidden="true">×</span>
+                  </button>
+                  <img src="./images/1.jpg" alt="Logo" onclick="location.href='#'" /> 
+              </a>
+              
+          </h1>
+      </div>
+      <script type="text/javascript">
+          function endpopup(){
+              jQuery('#popup').css('display','none');
+          }
+      </script>
+      
       <a href="#" class="to-top">
         <i class="fas fa-angle-up"></i>
       </a>
